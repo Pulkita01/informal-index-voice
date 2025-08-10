@@ -22,7 +22,7 @@ const Footer = () => {
       <div className="container-width py-20">
         <div className="grid md:grid-cols-4 gap-12">
           {/* Brand */}
-          <div className="md:col-span-2 pr-8">
+          <div className="md:col-span-2 pr-8 px-[12px] mx-[3px] my-0 py-[2px]">
             <h3 className="text-2xl font-bold text-eggshell mb-4">
               Informal Economy Index
             </h3>
@@ -51,12 +51,12 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div className="px-4">
+          <div className="px-0 mx-[14px]">
             <h4 className="text-lg font-semibold text-eggshell mb-4">Contact</h4>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-blood-red" />
-                <span className="text-glaucous text-sm">contact@informaleconomyindex.org</span>
+                <span className="text-glaucous text-sm px-0 text-left">contact@informaleconomyindex.org</span>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-blood-red" />
