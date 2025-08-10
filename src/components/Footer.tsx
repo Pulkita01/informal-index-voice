@@ -14,10 +14,10 @@ const Footer = () => {
 
   return (
     <footer className="bg-oxford-blue border-t border-glaucous/20">
-      <div className="container-width py-16">
-        <div className="grid md:grid-cols-4 gap-8">
+      <div className="container-width py-20">
+        <div className="grid md:grid-cols-4 gap-12">
           {/* Brand */}
-          <div className="md:col-span-2">
+          <div className="md:col-span-2 pr-8">
             <h3 className="text-2xl font-bold text-eggshell mb-4">
               Informal Economy Index
             </h3>
@@ -42,7 +42,7 @@ const Footer = () => {
           </div>
 
           {/* Quick Links */}
-          <div>
+          <div className="px-4">
             <h4 className="text-lg font-semibold text-eggshell mb-4">Quick Links</h4>
             <div className="space-y-2">
               {quickLinks.map((link) => (
@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
 
           {/* Contact Info */}
-          <div>
+          <div className="px-4">
             <h4 className="text-lg font-semibold text-eggshell mb-4">Contact</h4>
             <div className="space-y-3">
               <div className="flex items-center gap-3">
