@@ -52,6 +52,12 @@ export default {
 					DEFAULT: 'hsl(var(--card))',
 					foreground: 'hsl(var(--card-foreground))'
 				},
+				// IEI Brand Colors
+				'oxford-blue': 'hsl(var(--oxford-blue))',
+				'federal-blue': 'hsl(var(--federal-blue))',
+				'glaucous': 'hsl(var(--glaucous))',
+				'blood-red': 'hsl(var(--blood-red))',
+				'eggshell': 'hsl(var(--eggshell))',
 				sidebar: {
 					DEFAULT: 'hsl(var(--sidebar-background))',
 					foreground: 'hsl(var(--sidebar-foreground))',
