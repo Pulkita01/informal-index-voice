@@ -1,4 +1,3 @@
-import founderPhoto from "@/assets/founder-photo.jpg";
 import { Card, CardContent } from "@/components/ui/card";
 
 const FounderSection = () => {
@@ -15,14 +14,13 @@ const FounderSection = () => {
           <Card className="bg-oxford-blue border-glaucous/20 overflow-hidden">
             <CardContent className="p-0">
               <div className="grid md:grid-cols-2 gap-0">
-                {/* Photo */}
-                <div className="relative">
-                  <img 
-                    src={founderPhoto} 
-                    alt="IEI Founder" 
-                    className="w-full h-96 md:h-full object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-oxford-blue/20"></div>
+                {/* Photo Placeholder */}
+                <div className="relative bg-glaucous/10 flex items-center justify-center h-96 md:h-full">
+                  <div className="text-center">
+                    <div className="w-24 h-24 bg-glaucous/20 rounded-full mx-auto mb-4 flex items-center justify-center">
+                      <span className="text-glaucous text-sm">Photo Coming Soon</span>
+                    </div>
+                  </div>
                 </div>
                 
                 {/* Bio */}
