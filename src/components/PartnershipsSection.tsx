@@ -1,6 +1,11 @@
 import { Card, CardContent } from "@/components/ui/card";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
 
 const PartnershipsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+
   const partners = [
     { name: "Local NGO Partner 1", description: "Community development focus" },
     { name: "Local NGO Partner 2", description: "Financial literacy programs" },
@@ -11,37 +16,56 @@ const PartnershipsSection = () => {
   ];
 
   return (
-    <section id="partnerships" className="section-padding bg-federal-blue">
+    <section ref={ref} id="partnerships" className="section-padding bg-federal-blue">
       <div className="container-width">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-eggshell mb-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl md:text-5xl font-bold text-eggshell mb-6"
+          >
             Our Partnerships
-          </h2>
-          <p className="text-xl text-glaucous max-w-3xl mx-auto leading-relaxed">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-xl text-glaucous max-w-3xl mx-auto leading-relaxed"
+          >
             Collaborating with organizations across India to create meaningful impact in the informal economy sector.
-          </p>
+          </motion.p>
         </div>
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {partners.map((partner, index) => (
-            <Card 
-              key={index} 
-              className="bg-oxford-blue border-glaucous/20 hover:border-glaucous/50 smooth-transition group cursor-pointer"
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, y: 40, scale: 0.9 }}
+              animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.9 }}
+              transition={{ 
+                duration: 0.6, 
+                delay: 0.6 + index * 0.1,
+                type: "spring",
+                stiffness: 100
+              }}
             >
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-glaucous/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-glaucous/30 smooth-transition">
-                  <div className="w-8 h-8 bg-blood-red rounded opacity-70"></div>
-                </div>
-                
-                <h3 className="text-xl font-bold text-eggshell mb-3">
-                  {partner.name}
-                </h3>
-                
-                <p className="text-glaucous leading-relaxed">
-                  {partner.description}
-                </p>
-              </CardContent>
-            </Card>
+              <Card className="bg-oxford-blue border-glaucous/20 hover:border-glaucous/50 smooth-transition group cursor-pointer h-full">
+                <CardContent className="p-8 text-center">
+                  <div className="w-16 h-16 bg-glaucous/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-glaucous/30 smooth-transition">
+                    <div className="w-8 h-8 bg-blood-red rounded opacity-70"></div>
+                  </div>
+                  
+                  <h3 className="text-xl font-bold text-eggshell mb-3">
+                    {partner.name}
+                  </h3>
+                  
+                  <p className="text-glaucous leading-relaxed">
+                    {partner.description}
+                  </p>
+                </CardContent>
+              </Card>
+            </motion.div>
           ))}
         </div>
       </div>

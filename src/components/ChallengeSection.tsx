@@ -116,8 +116,8 @@ const ChallengeSection = () => {
             {impactStatements.map((statement, index) => (
               <motion.p
                 key={index}
-                initial={{ opacity: 0, x: -50 }}
-                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
+                initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+                animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
                 transition={{ duration: 0.8, delay: 1.8 + index * 0.3 }}
                 className="text-xl md:text-2xl text-white font-medium"
               >

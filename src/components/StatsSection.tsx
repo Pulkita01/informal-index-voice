@@ -1,45 +1,65 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 
 const StatsSection = () => {
   const [volunteers, setVolunteers] = useState(0);
   const [donated, setDonated] = useState("₹0");
   const [partners, setPartners] = useState("0");
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   useEffect(() => {
-    // Animate counter for volunteers
-    const timer = setTimeout(() => {
-      let count = 0;
-      const interval = setInterval(() => {
-        count += 2;
-        setVolunteers(count);
-        if (count >= 50) {
-          clearInterval(interval);
-          setVolunteers(50);
-        }
-      }, 50);
-    }, 500);
+    if (isInView) {
+      // Animate counter for volunteers
+      const timer = setTimeout(() => {
+        let count = 0;
+        const interval = setInterval(() => {
+          count += 2;
+          setVolunteers(count);
+          if (count >= 50) {
+            clearInterval(interval);
+            setVolunteers(50);
+          }
+        }, 50);
+      }, 800);
 
-    // Set other stats (these can be updated by admins later)
-    setTimeout(() => setDonated("₹25,000+"), 1000);
-    setTimeout(() => setPartners("5+"), 1500);
+      // Set other stats (these can be updated by admins later)
+      setTimeout(() => setDonated("₹25,000+"), 1200);
+      setTimeout(() => setPartners("5+"), 1600);
 
-    return () => clearTimeout(timer);
-  }, []);
+      return () => clearTimeout(timer);
+    }
+  }, [isInView]);
 
   return (
-    <section className="section-padding bg-gradient-to-r from-federal-blue to-oxford-blue">
+    <section ref={ref} className="section-padding bg-gradient-to-r from-federal-blue to-oxford-blue">
       <div className="container-width">
         <div className="text-center mb-12">
-          <h2 className="text-4xl md:text-5xl font-bold text-eggshell mb-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-4xl md:text-5xl font-bold text-eggshell mb-6"
+          >
             Our Impact
-          </h2>
-          <p className="text-xl text-glaucous">
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            className="text-xl text-glaucous"
+          >
             Making a difference in India's informal economy
-          </p>
+          </motion.p>
         </div>
         
         <div className="grid md:grid-cols-3 gap-12 text-center">
-          <div className="group">
+          <motion.div 
+            initial={{ opacity: 0, y: 40, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="group"
+          >
             <div className="text-5xl md:text-6xl font-bold text-blood-red mb-4 group-hover:scale-110 smooth-transition">
               {volunteers}+
             </div>
@@ -47,9 +67,14 @@ const StatsSection = () => {
             <div className="text-glaucous">
               Passionate youth driving change
             </div>
-          </div>
+          </motion.div>
           
-          <div className="group">
+          <motion.div 
+            initial={{ opacity: 0, y: 40, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.8 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+            className="group"
+          >
             <div className="text-5xl md:text-6xl font-bold text-blood-red mb-4 group-hover:scale-110 smooth-transition">
               {donated}
             </div>
@@ -57,9 +82,14 @@ const StatsSection = () => {
             <div className="text-glaucous">
               Direct financial support
             </div>
-          </div>
+          </motion.div>
           
-          <div className="group">
+          <motion.div 
+            initial={{ opacity: 0, y: 40, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.8 }}
+            transition={{ duration: 0.6, delay: 1.0 }}
+            className="group"
+          >
             <div className="text-5xl md:text-6xl font-bold text-blood-red mb-4 group-hover:scale-110 smooth-transition">
               {partners}
             </div>
@@ -67,7 +97,7 @@ const StatsSection = () => {
             <div className="text-glaucous">
               Collaborative relationships
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
