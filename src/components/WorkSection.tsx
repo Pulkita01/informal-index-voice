@@ -1,59 +1,12 @@
 import { useState } from "react";
-import { QrCode, Eye, X } from "lucide-react";
+import { Eye, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import QRCode from "react-qr-code";
+import { workerStories, type WorkerStory } from "@/data/workerStories";
 
 const WorkSection = () => {
-  const [selectedStory, setSelectedStory] = useState<null | {
-    name: string;
-    role: string;
-    story: string;
-    videoUrl?: string;
-  }>(null);
+  const [selectedStory, setSelectedStory] = useState<null | WorkerStory>(null);
 
-  const workerStories = [
-    {
-      name: "Ravi",
-      role: "Street Vendor",
-      qrCodeId: "ravi-vendor-001",
-      story: "Ravi sells fruits on the bustling streets of Mumbai. Through our financial literacy program, he learned to save systematically and now has an emergency fund that helped his family during the monsoon season when sales were low.",
-      videoUrl: "#"
-    },
-    {
-      name: "Priya",
-      role: "Domestic Helper",
-      qrCodeId: "priya-helper-002",
-      story: "Priya works in multiple households across Delhi. Our scheme awareness workshop helped her register for health insurance, giving her family access to affordable healthcare for the first time.",
-      videoUrl: "#"
-    },
-    {
-      name: "Suresh",
-      role: "Auto Rickshaw Driver",
-      qrCodeId: "suresh-driver-003",
-      story: "Suresh drives an auto rickshaw in Bangalore. Through our digital literacy training, he learned to use payment apps and government portals, increasing his daily earnings by 30%.",
-      videoUrl: "#"
-    },
-    {
-      name: "Kamala",
-      role: "Flower Seller",
-      qrCodeId: "kamala-seller-004",
-      story: "Kamala sells flowers at a temple in Chennai. Our community savings program helped her join a women's self-help group, where she's building credit and planning to expand her business.",
-      videoUrl: "#"
-    },
-    {
-      name: "Raj",
-      role: "Construction Worker",
-      qrCodeId: "raj-worker-005",
-      story: "Raj works on construction sites across Pune. Our emergency relief drive provided his family with essential supplies during COVID-19, and our job placement support helped him find steady work.",
-      videoUrl: "#"
-    },
-    {
-      name: "Meera",
-      role: "Vegetable Vendor",
-      qrCodeId: "meera-vendor-006",
-      story: "Meera runs a small vegetable stall in Kolkata's markets. Through our index survey, we documented her challenges with income volatility and helped connect her with a microcredit program.",
-      videoUrl: "#"
-    }
-  ];
 
   const openStory = (story: typeof workerStories[0]) => {
     setSelectedStory(story);
@@ -85,14 +38,30 @@ const WorkSection = () => {
               className="bg-oxford-blue/30 backdrop-blur-sm border border-glaucous/20 rounded-xl p-8 text-center hover:border-blood-red/50 smooth-transition group cursor-pointer"
               onClick={() => openStory(worker)}
             >
-              {/* QR Code Placeholder */}
+              {/* QR Code */}
               <div className="relative mb-6">
-                <div className="w-32 h-32 mx-auto bg-eggshell rounded-lg flex items-center justify-center group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(105,3,7,0.5)] smooth-transition">
-                  <QrCode className="w-20 h-20 text-oxford-blue" />
-                </div>
+                <a
+                  href={`/story/${worker.qrCodeId}`}
+                  aria-label={`Open story for ${worker.name}, ${worker.role}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openStory(worker);
+                  }}
+                  className="block mx-auto w-36"
+                >
+                  <div className="mx-auto bg-eggshell rounded-lg p-3 flex items-center justify-center group-hover:scale-105 smooth-transition shadow-inner text-oxford-blue group-hover:shadow-[0_0_20px_rgba(105,3,7,0.5)]">
+                    <QRCode
+                      value={`${window.location.origin}/story/${worker.qrCodeId}`}
+                      size={128}
+                      fgColor="currentColor"
+                      bgColor="transparent"
+                      aria-label={`QR code linking to ${window.location.origin}/story/${worker.qrCodeId}`}
+                    />
+                  </div>
+                </a>
                 {/* Hover glow effect */}
                 <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 smooth-transition pointer-events-none">
-                  <div className="w-32 h-32 mx-auto rounded-lg border-2 border-blood-red animate-pulse"></div>
+                  <div className="w-36 h-36 mx-auto rounded-lg border-2 border-blood-red animate-pulse"></div>
                 </div>
               </div>
 
