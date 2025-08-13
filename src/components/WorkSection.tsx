@@ -17,32 +17,80 @@ const WorkSection = () => {
   };
 
   return (
-    <section id="work" className="section-padding bg-gradient-to-br from-federal-blue via-federal-blue to-oxford-blue">
-      <div className="container-width">
-        {/* Intro */}
-        <div className="text-center mb-16">
-          <p className="text-3xl md:text-4xl font-light text-eggshell mb-12 leading-relaxed">
-            Each code unlocks a journey. Scan or click to see the people behind the numbers.
-          </p>
+    <section id="work" className="relative bg-gradient-to-br from-federal-blue via-federal-blue to-oxford-blue overflow-hidden">
+      {/* Scan-line background animation */}
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute w-full h-px bg-gradient-to-r from-transparent via-glaucous to-transparent animate-pulse" 
+             style={{
+               animation: "scanLine 4s ease-in-out infinite",
+               top: "20%"
+             }}
+        />
+        <div className="absolute w-full h-px bg-gradient-to-r from-transparent via-glaucous/50 to-transparent animate-pulse" 
+             style={{
+               animation: "scanLine 5s ease-in-out infinite 1s",
+               top: "60%"
+             }}
+        />
+      </div>
+
+      {/* Sticky Title */}
+      <div className="sticky top-0 z-20 bg-gradient-to-b from-federal-blue to-federal-blue/80 backdrop-blur-sm py-8">
+        <div className="container-width text-center">
+          <h2 className="text-4xl md:text-6xl font-bold text-eggshell tracking-tight">
+            Real Stories, Real Voices
+          </h2>
         </div>
+      </div>
+
+      <div className="section-padding">
+        <div className="container-width">
+          {/* Intro */}
+          <div className="text-center mb-16">
+            <p className="text-3xl md:text-4xl font-light text-eggshell mb-12 leading-relaxed">
+              Each code unlocks a journey. Scan or click to see the people behind the numbers.
+            </p>
+          </div>
         
-        {/* Story Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {workerStories.map((worker, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 60, scale: 0.8 }}
-              whileInView={{ opacity: 1, y: 0, scale: 1 }}
-              transition={{ 
-                duration: 0.6, 
-                delay: index * 0.15,
-                type: "spring",
-                stiffness: 100
-              }}
-              viewport={{ once: true }}
-              className="bg-oxford-blue/30 backdrop-blur-sm border border-glaucous/20 rounded-xl p-8 text-center hover:border-blood-red/50 smooth-transition group cursor-pointer"
-              onClick={() => openStory(worker)}
-            >
+          {/* Story Cards Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {workerStories.map((worker, index) => (
+              <motion.div
+                key={index}
+                initial={{ 
+                  opacity: 0, 
+                  y: 60, 
+                  scale: 0.8,
+                  rotateX: 15,
+                  rotateY: 5
+                }}
+                whileInView={{ 
+                  opacity: 1, 
+                  y: 0, 
+                  scale: 1,
+                  rotateX: 0,
+                  rotateY: 0
+                }}
+                whileHover={{
+                  scale: 1.05,
+                  rotateX: -5,
+                  rotateY: 5,
+                  boxShadow: "0 25px 50px -12px rgba(105, 3, 7, 0.5)"
+                }}
+                transition={{ 
+                  duration: 0.8, 
+                  delay: index * 0.2,
+                  type: "spring",
+                  stiffness: 100
+                }}
+                viewport={{ once: true }}
+                className="bg-oxford-blue/30 backdrop-blur-sm border border-glaucous/20 rounded-xl p-8 text-center hover:border-blood-red/50 smooth-transition group cursor-pointer transform-gpu perspective-1000"
+                style={{
+                  transformStyle: "preserve-3d",
+                  filter: "drop-shadow(0 0 20px rgba(133, 157, 175, 0.2))"
+                }}
+                onClick={() => openStory(worker)}
+              >
               {/* QR Code */}
               <div className="relative mb-6">
                 <a
@@ -54,7 +102,15 @@ const WorkSection = () => {
                   }}
                   className="block mx-auto w-36"
                 >
-                  <div className="mx-auto bg-eggshell rounded-lg p-3 flex items-center justify-center group-hover:scale-105 smooth-transition shadow-inner text-oxford-blue group-hover:shadow-[0_0_20px_rgba(105,3,7,0.5)]">
+                  <motion.div 
+                    className="mx-auto bg-eggshell rounded-lg p-3 flex items-center justify-center smooth-transition shadow-inner text-oxford-blue relative"
+                    whileHover={{ 
+                      scale: 1.1,
+                      rotateY: 10,
+                      rotateX: -5
+                    }}
+                    style={{ transformStyle: "preserve-3d" }}
+                  >
                     <QRCode
                       value={`${window.location.origin}/story/${worker.qrCodeId}`}
                       size={128}
@@ -62,26 +118,48 @@ const WorkSection = () => {
                       bgColor="transparent"
                       aria-label={`QR code linking to ${window.location.origin}/story/${worker.qrCodeId}`}
                     />
-                  </div>
+                    {/* Soft glow on load */}
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: index * 0.2 + 0.5, duration: 0.5 }}
+                      className="absolute inset-0 rounded-lg bg-gradient-to-br from-glaucous/20 to-blood-red/20 blur-sm -z-10"
+                    />
+                  </motion.div>
                 </a>
-                {/* Hover glow effect */}
-                <div className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 smooth-transition pointer-events-none">
-                  <div className="w-36 h-36 mx-auto rounded-lg border-2 border-blood-red animate-pulse"></div>
+                {/* Enhanced hover glow effect */}
+                <motion.div 
+                  className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 smooth-transition pointer-events-none"
+                  animate={{
+                    boxShadow: [
+                      "0 0 0px rgba(105, 3, 7, 0)",
+                      "0 0 20px rgba(105, 3, 7, 0.5)",
+                      "0 0 0px rgba(105, 3, 7, 0)"
+                    ]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                >
+                  <div className="w-36 h-36 mx-auto rounded-lg border-2 border-blood-red/50"></div>
+                </motion.div>
+              </div>
+
+                {/* Worker Info */}
+                <h3 className="text-xl font-bold text-eggshell mb-2">
+                  {worker.name} – {worker.role}
+                </h3>
+
+                {/* Icon */}
+                <div className="flex items-center justify-center gap-2 text-glaucous">
+                  <Eye className="w-4 h-4" />
+                  <span className="text-sm">Tap or Scan to View Story</span>
                 </div>
-              </div>
-
-              {/* Worker Info */}
-              <h3 className="text-xl font-bold text-eggshell mb-2">
-                {worker.name} – {worker.role}
-              </h3>
-
-              {/* Icon */}
-              <div className="flex items-center justify-center gap-2 text-glaucous">
-                <Eye className="w-4 h-4" />
-                <span className="text-sm">Tap or Scan to View Story</span>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            ))}
+          </div>
         </div>
       </div>
 
