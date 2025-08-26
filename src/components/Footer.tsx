@@ -31,10 +31,10 @@ const Footer = () => {
               Making the unseen visible through data, education, and community empowerment.
             </p>
             <div className="flex gap-4">
-              <button className="w-10 h-10 bg-federal-blue rounded-lg flex items-center justify-center hover:bg-blood-red smooth-transition" onClick={() => window.open('#', '_blank')}>
+              <button className="w-10 h-10 bg-federal-blue rounded-lg flex items-center justify-center hover:bg-blood-red smooth-transition" onClick={() => window.open('https://www.instagram.com/informaleconomyindex?igsh=MTljamE2cDh3dnZlNg==', '_blank')}>
                 <Instagram className="w-5 h-5 text-eggshell" />
               </button>
-              <button className="w-10 h-10 bg-federal-blue rounded-lg flex items-center justify-center hover:bg-blood-red smooth-transition" onClick={() => window.open('mailto:contact@informaleconomyindex.org')}>
+              <button className="w-10 h-10 bg-federal-blue rounded-lg flex items-center justify-center hover:bg-blood-red smooth-transition" onClick={() => window.open('mailto:informaleconomyindex@gmail.com')}>
                 <Mail className="w-5 h-5 text-eggshell" />
               </button>
             </div>
@@ -56,7 +56,7 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-center gap-3">
                 <Mail className="w-4 h-4 text-blood-red" />
-                <span className="text-glaucous text-sm px-0 text-left">contact@informaleconomyindex.org</span>
+                <span className="text-glaucous text-sm px-0 text-left">informaleconomyindex@gmail.com</span>
               </div>
               <div className="flex items-center gap-3">
                 <MapPin className="w-4 h-4 text-blood-red" />

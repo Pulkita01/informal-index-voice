@@ -115,7 +115,7 @@ const ContactSection = () => {
                 <Button 
                   variant="outline" 
                   className="w-full border-glaucous text-glaucous hover:bg-glaucous hover:text-oxford-blue smooth-transition"
-                  onClick={() => window.open('#', '_blank')}
+                  onClick={() => window.open('https://www.instagram.com/informaleconomyindex?igsh=MTljamE2cDh3dnZlNg==', '_blank')}
                 >
                   @InformalEconomyIndex
                 </Button>
@@ -133,7 +133,7 @@ const ContactSection = () => {
                     <p className="text-glaucous">Direct communication</p>
                   </div>
                 </div>
-                <p className="text-eggshell font-mono">contact@informaleconomyindex.org</p>
+                <p className="text-eggshell font-mono">informaleconomyindex@gmail.com</p>
               </CardContent>
             </Card>
             
