@@ -7,10 +7,15 @@ const HeroSection = () => {
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+      {/* Background Image with Smooth Emergence */}
       <div 
-        className="absolute inset-0 bg-contain bg-center bg-no-repeat md:bg-cover"
-        style={{ backgroundImage: `url(/lovable-uploads/09c7a0e8-fe0e-47ce-954a-0b7297ca8f5d.png)` }}
+        className="absolute inset-0 bg-contain bg-center bg-no-repeat md:bg-cover animate-fade-in"
+        style={{ 
+          backgroundImage: `url(/lovable-uploads/09c7a0e8-fe0e-47ce-954a-0b7297ca8f5d.png)`,
+          animationDuration: '2s',
+          animationDelay: '0.5s',
+          animationFillMode: 'both'
+        }}
       />
       
       {/* Overlay */}
@@ -35,7 +40,7 @@ const HeroSection = () => {
             onClick={() => scrollToSection('contact')}
             className="bg-blood-red hover:bg-blood-red/80 text-eggshell px-8 py-4 text-lg font-semibold glow-effect smooth-transition"
           >
-            Join Us
+            Contact Us
           </Button>
           <Button 
             variant="outline" 

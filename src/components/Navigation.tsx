@@ -57,7 +57,7 @@ const Navigation = () => {
               onClick={() => scrollToSection('contact')}
               className="bg-blood-red hover:bg-blood-red/80 text-eggshell px-6 py-2 font-semibold glow-effect smooth-transition"
             >
-              Join Us
+              Contact Us
             </Button>
           </div>
 
@@ -89,7 +89,7 @@ const Navigation = () => {
                 onClick={() => scrollToSection('contact')}
                 className="bg-blood-red hover:bg-blood-red/80 text-eggshell font-semibold mt-2 w-full"
               >
-                Join Us
+                Contact Us
               </Button>
             </div>
           </div>

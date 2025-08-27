@@ -6,12 +6,12 @@
 
 @layer base {
   :root {
-    /* IEI Brand Colors */
-    --oxford-blue: 246 93% 10%;        /* #0D0829 */
-    --federal-blue: 237 92% 20%;       /* #091358 */
-    --glaucous: 213 26% 52%;           /* #6883A1 */
-    --blood-red: 357 91% 22%;          /* #690307 */
-    --eggshell: 49 67% 93%;            /* #F4F1DE */
+    /* IEI Brand Colors - Blue, Red, White, Light Blue */
+    --oxford-blue: 220 100% 20%;       /* Deep Blue */
+    --federal-blue: 210 100% 50%;      /* Bright Blue */
+    --glaucous: 200 100% 75%;          /* Light Blue */
+    --blood-red: 0 100% 50%;           /* Pure Red */
+    --eggshell: 0 0% 100%;             /* Pure White */
 
     /* Design System Tokens */
     --background: var(--oxford-blue);
@@ -165,6 +165,25 @@
     transform: translateY(200px) scaleX(1.2);
     opacity: 0.8;
   }
+}
+
+@keyframes logoPopUp {
+  0% {
+    transform: scale(0) rotate(0deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(10deg);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+.logo-popup {
+  animation: logoPopUp 1.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
 
 @keyframes moveStripes {

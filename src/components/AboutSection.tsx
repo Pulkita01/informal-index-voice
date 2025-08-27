@@ -1,18 +1,21 @@
 import { TrendingUp, GraduationCap, Heart, Users } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { motion } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { useInView } from "framer-motion";
 
 const AboutSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [showInsightsModal, setShowInsightsModal] = useState(false);
 
   const initiatives = [
     {
       icon: TrendingUp,
       title: "Building an Index",
-      description: "Based on slum surveys covering debt cycles, saving habits, income volatility, scheme awareness, migration patterns."
+      description: "Based on slum surveys covering debt cycles, saving habits, income volatility, scheme awareness, migration patterns.",
+      isClickable: true
     },
     {
       icon: GraduationCap,
@@ -28,6 +31,38 @@ const AboutSection = () => {
       icon: Users,
       title: "Policy Accessibility",
       description: "Connecting policymakers with ground realities to create more inclusive economic policies."
+    }
+  ];
+
+  const handleBuildingIndexClick = () => {
+    setShowInsightsModal(true);
+  };
+
+  const insightsData = [
+    {
+      title: "Education Level vs Work and Savings",
+      points: [
+        "Illiterate → Lowest savings, fewer work hours",
+        "10th pass → Longest work hours, negligible savings", 
+        "12th+ → Highest savings, but still high work demands"
+      ]
+    },
+    {
+      title: "Financial Correlations Analysis",
+      points: [
+        "Age vs Savings → Weak negative correlation (-0.15)",
+        "Hours Worked vs Earnings → Weak positive correlation (0.09)",
+        "Age vs Hours Worked → Strongest positive correlation (0.23)"
+      ]
+    },
+    {
+      title: "Social Security & Awareness Insights",
+      points: [
+        "45.9% have e-Shram cards, only 1.8% enrolled in PM-SYM",
+        "48.3% of women in debt vs 41.7% of men",
+        "59% with middle school+ took skill training",
+        "42.4% migrated for work; 44.9% migrate seasonally"
+      ]
     }
   ];
 
@@ -61,7 +96,12 @@ const AboutSection = () => {
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.9 }}
               transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
             >
-              <Card className="bg-federal-blue border-glaucous/20 hover:border-glaucous/50 smooth-transition group h-full">
+              <Card 
+                className={`bg-federal-blue border-glaucous/20 hover:border-glaucous/50 smooth-transition group h-full ${
+                  initiative.isClickable ? 'cursor-pointer hover:scale-105 hover:shadow-lg' : ''
+                }`}
+                onClick={initiative.isClickable ? handleBuildingIndexClick : undefined}
+              >
                 <CardContent className="p-8 text-center">
                   <div className="mb-6 flex justify-center">
                     <div className="w-16 h-16 bg-blood-red/20 rounded-full flex items-center justify-center group-hover:bg-blood-red/30 smooth-transition">
@@ -81,6 +121,52 @@ const AboutSection = () => {
             </motion.div>
           ))}
         </div>
+
+        {/* Insights Modal */}
+        <Dialog open={showInsightsModal} onOpenChange={setShowInsightsModal}>
+          <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-federal-blue border-glaucous/20">
+            <DialogHeader className="text-center">
+              <div className="flex justify-center mb-4">
+                <div className="w-20 h-20 bg-gradient-to-r from-blood-red to-glaucous rounded-full flex items-center justify-center logo-popup">
+                  <span className="text-3xl font-bold text-eggshell">IEI</span>
+                </div>
+              </div>
+              <DialogTitle className="text-3xl font-bold text-eggshell mb-2">
+                Quantifying the Unseen
+              </DialogTitle>
+              <p className="text-glaucous text-lg">
+                India's comprehensive data on informal economy workers
+              </p>
+            </DialogHeader>
+            
+            <div className="grid md:grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
+              {insightsData.map((insight, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.2 }}
+                >
+                  <Card className="bg-oxford-blue border-glaucous/30 h-full">
+                    <CardContent className="p-6">
+                      <h4 className="text-lg font-bold text-eggshell mb-4">
+                        {insight.title}
+                      </h4>
+                      <ul className="space-y-3">
+                        {insight.points.map((point, pointIndex) => (
+                          <li key={pointIndex} className="text-glaucous text-sm leading-relaxed flex items-start">
+                            <span className="w-2 h-2 bg-blood-red rounded-full mt-2 mr-3 flex-shrink-0"></span>
+                            {point}
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </motion.div>
+              ))}
+            </div>
+          </DialogContent>
+        </Dialog>
       </div>
     </section>
   );
