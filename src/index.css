@@ -7,50 +7,50 @@
 @layer base {
   :root {
     /* IEI Brand Colors - Blue, Red, White, Light Blue */
-    --oxford-blue: 220 100% 20%;       /* Deep Blue */
-    --federal-blue: 210 100% 50%;      /* Bright Blue */
-    --glaucous: 200 100% 75%;          /* Light Blue */
-    --blood-red: 0 100% 50%;           /* Pure Red */
-    --eggshell: 0 0% 100%;             /* Pure White */
+    --pure-blue: 220 100% 50%;         /* Pure Blue #0066FF */
+    --bright-red: 0 100% 50%;          /* Pure Red #FF0000 */
+    --pure-white: 0 0% 100%;           /* Pure White #FFFFFF */
+    --light-blue: 197 71% 73%;         /* Light Blue #87CEEB */
+    --deep-blue: 220 100% 25%;         /* Deep Blue for backgrounds */
 
     /* Design System Tokens */
-    --background: var(--oxford-blue);
-    --foreground: var(--eggshell);
+    --background: var(--deep-blue);
+    --foreground: var(--pure-white);
 
-    --card: var(--federal-blue);
-    --card-foreground: var(--eggshell);
+    --card: var(--pure-blue);
+    --card-foreground: var(--pure-white);
 
-    --popover: var(--federal-blue);
-    --popover-foreground: var(--eggshell);
+    --popover: var(--pure-blue);
+    --popover-foreground: var(--pure-white);
 
-    --primary: var(--blood-red);
-    --primary-foreground: var(--eggshell);
+    --primary: var(--bright-red);
+    --primary-foreground: var(--pure-white);
 
-    --secondary: var(--glaucous);
-    --secondary-foreground: var(--eggshell);
+    --secondary: var(--light-blue);
+    --secondary-foreground: var(--deep-blue);
 
-    --muted: var(--federal-blue);
-    --muted-foreground: var(--glaucous);
+    --muted: var(--pure-blue);
+    --muted-foreground: var(--light-blue);
 
-    --accent: var(--glaucous);
-    --accent-foreground: var(--oxford-blue);
+    --accent: var(--light-blue);
+    --accent-foreground: var(--deep-blue);
 
-    --destructive: var(--blood-red);
-    --destructive-foreground: var(--eggshell);
+    --destructive: var(--bright-red);
+    --destructive-foreground: var(--pure-white);
 
-    --border: var(--glaucous);
-    --input: var(--federal-blue);
-    --ring: var(--blood-red);
+    --border: var(--light-blue);
+    --input: var(--pure-blue);
+    --ring: var(--bright-red);
 
     --radius: 0.75rem;
 
     /* Gradients */
-    --gradient-hero: linear-gradient(135deg, hsl(var(--oxford-blue)), hsl(var(--federal-blue)));
-    --gradient-accent: linear-gradient(45deg, hsl(var(--blood-red)), hsl(var(--glaucous)));
+    --gradient-hero: linear-gradient(135deg, hsl(var(--deep-blue)), hsl(var(--pure-blue)));
+    --gradient-accent: linear-gradient(45deg, hsl(var(--bright-red)), hsl(var(--light-blue)));
     
     /* Shadows */
-    --shadow-glow: 0 0 40px hsl(var(--blood-red) / 0.3);
-    --shadow-card: 0 10px 30px -10px hsl(var(--oxford-blue) / 0.5);
+    --shadow-glow: 0 0 40px hsl(var(--bright-red) / 0.3);
+    --shadow-card: 0 10px 30px -10px hsl(var(--deep-blue) / 0.5);
     
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -204,11 +204,11 @@
   z-index: -1;
   background: linear-gradient(
     45deg,
-    hsl(var(--oxford-blue)) 0%,
-    hsl(var(--federal-blue)) 25%,
-    hsl(var(--oxford-blue)) 50%,
-    hsl(var(--federal-blue)) 75%,
-    hsl(var(--oxford-blue)) 100%
+    hsl(var(--deep-blue)) 0%,
+    hsl(var(--pure-blue)) 25%,
+    hsl(var(--deep-blue)) 50%,
+    hsl(var(--pure-blue)) 75%,
+    hsl(var(--deep-blue)) 100%
   );
   background-size: 200% 200%;
   animation: moveStripes 20s ease-in-out infinite;
