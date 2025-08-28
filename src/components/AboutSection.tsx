@@ -95,12 +95,13 @@ const AboutSection = () => {
               initial={{ opacity: 0, y: 40, scale: 0.9 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.9 }}
               transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
+              style={{ pointerEvents: 'auto' }}
             >
               <Card 
-                className={`bg-card border-border hover:border-accent smooth-transition group h-full ${
+                className={`bg-card border-border smooth-transition group h-full ${
                   initiative.isClickable 
-                    ? 'cursor-pointer hover:scale-105 hover:shadow-2xl bg-gradient-to-br from-card to-accent/20 border-2 border-primary/30 hover:border-primary hover:glow-effect' 
-                    : 'hover:shadow-lg'
+                    ? 'cursor-pointer hover:scale-110 hover:shadow-2xl bg-gradient-to-br from-primary/10 to-accent/30 border-4 border-primary/50 hover:border-primary glow-effect hover:bg-gradient-to-br hover:from-primary/20 hover:to-accent/40 active:scale-105 transform-gpu' 
+                    : 'hover:shadow-lg hover:border-accent'
                 }`}
                 onClick={initiative.isClickable ? handleBuildingIndexClick : undefined}
               >
@@ -116,15 +117,15 @@ const AboutSection = () => {
                   </div>
                   
                   <h3 className={`text-xl font-bold mb-4 ${
-                    initiative.isClickable ? 'text-primary group-hover:text-primary' : 'text-foreground'
+                    initiative.isClickable ? 'text-primary group-hover:text-red-600' : 'text-foreground'
                   }`}>
                     {initiative.title}
-                    {initiative.isClickable && <span className="ml-2 text-primary animate-pulse">→</span>}
+                    {initiative.isClickable && <span className="ml-2 text-primary animate-pulse text-2xl">🔍</span>}
                   </h3>
                   
                   <p className="text-muted-foreground leading-relaxed">
                     {initiative.description}
-                    {initiative.isClickable && <span className="block mt-2 text-primary font-semibold">Click to explore insights</span>}
+                    {initiative.isClickable && <span className="block mt-3 text-primary font-bold bg-primary/10 px-3 py-2 rounded-lg border border-primary/30 animate-pulse">📊 Click to explore data insights</span>}
                   </p>
                 </CardContent>
               </Card>
@@ -143,7 +144,7 @@ const AboutSection = () => {
                 transition={{ delay: 0.3, duration: 1.5, type: "spring", bounce: 0.6 }}
                 className="absolute -top-4 left-1/2 transform -translate-x-1/2 z-10"
               >
-                <div className="bg-primary text-primary-foreground px-6 py-3 rounded-full shadow-lg animate-logo-popup glow-effect">
+                <div className="bg-primary text-primary-foreground px-6 py-3 rounded-full shadow-lg logo-popup glow-effect">
                   <span className="font-bold text-2xl">IEI</span>
                 </div>
               </motion.div>
