@@ -34,8 +34,23 @@ const AboutSection = () => {
     }
   ];
 
+  const [isLoading, setIsLoading] = useState(false);
+
   const handleBuildingIndexClick = () => {
-    setShowInsightsModal(true);
+    console.log('Building Index card clicked!'); // Debug log
+    setIsLoading(true);
+    // Small delay to show loading state
+    setTimeout(() => {
+      setShowInsightsModal(true);
+      setIsLoading(false);
+    }, 200);
+  };
+
+  const handleKeyPress = (event: React.KeyboardEvent, onClick?: () => void) => {
+    if ((event.key === 'Enter' || event.key === ' ') && onClick) {
+      event.preventDefault();
+      onClick();
+    }
   };
 
   const insightsData = [
@@ -95,15 +110,23 @@ const AboutSection = () => {
               initial={{ opacity: 0, y: 40, scale: 0.9 }}
               animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 40, scale: 0.9 }}
               transition={{ duration: 0.6, delay: 0.6 + index * 0.1 }}
-              style={{ pointerEvents: 'auto' }}
+              style={{ 
+                pointerEvents: 'auto',
+                zIndex: initiative.isClickable ? 10 : 1
+              }}
+              onClick={initiative.isClickable ? handleBuildingIndexClick : undefined}
+              onKeyDown={initiative.isClickable ? (e) => handleKeyPress(e, handleBuildingIndexClick) : undefined}
+              role={initiative.isClickable ? "button" : undefined}
+              tabIndex={initiative.isClickable ? 0 : undefined}
+              aria-label={initiative.isClickable ? "Click to explore data insights about Building an Index" : undefined}
+              className={initiative.isClickable ? "focus:outline-none focus:ring-4 focus:ring-primary/50 rounded-lg" : ""}
             >
               <Card 
-                className={`bg-card border-border smooth-transition group h-full ${
+                className={`bg-card border-border smooth-transition group h-full touch-manipulation select-none ${
                   initiative.isClickable 
-                    ? 'cursor-pointer hover:scale-110 hover:shadow-2xl bg-gradient-to-br from-primary/10 to-accent/30 border-4 border-primary/50 hover:border-primary glow-effect hover:bg-gradient-to-br hover:from-primary/20 hover:to-accent/40 active:scale-105 transform-gpu' 
+                    ? `cursor-pointer hover:scale-110 hover:shadow-2xl bg-gradient-to-br from-primary/10 to-accent/30 border-4 border-primary/50 hover:border-primary glow-effect hover:bg-gradient-to-br hover:from-primary/20 hover:to-accent/40 active:scale-105 transform-gpu min-h-[48px] ${isLoading ? 'animate-pulse opacity-75' : ''}` 
                     : 'hover:shadow-lg hover:border-accent'
                 }`}
-                onClick={initiative.isClickable ? handleBuildingIndexClick : undefined}
               >
                 <CardContent className="p-8 text-center">
                   <div className="mb-6 flex justify-center">
@@ -125,7 +148,18 @@ const AboutSection = () => {
                   
                   <p className="text-muted-foreground leading-relaxed">
                     {initiative.description}
-                    {initiative.isClickable && <span className="block mt-3 text-primary font-bold bg-primary/10 px-3 py-2 rounded-lg border border-primary/30 animate-pulse">📊 Click to explore data insights</span>}
+                    {initiative.isClickable && (
+                      <span className="block mt-3 text-primary font-bold bg-primary/10 px-3 py-2 rounded-lg border border-primary/30 animate-pulse">
+                        {isLoading ? (
+                          <span className="flex items-center justify-center gap-2">
+                            <div className="w-4 h-4 border-2 border-primary border-t-transparent rounded-full animate-spin"></div>
+                            Loading insights...
+                          </span>
+                        ) : (
+                          <>📊 Click to explore data insights</>
+                        )}
+                      </span>
+                    )}
                   </p>
                 </CardContent>
               </Card>
