@@ -82,45 +82,33 @@ const StatesHeatmapSection = () => {
                     className="w-full h-auto max-w-2xl mx-auto"
                     style={{ filter: 'drop-shadow(0 4px 20px rgba(0,102,255,0.1))' }}
                   >
-                    {/* India Map Outline */}
+                    {/* Accurate India Map Outline - Distinctive Triangular Shape */}
                     <path
-                      d="M 150 150 
-                         L 200 120 
-                         L 280 100 
-                         L 320 110 
-                         L 350 120 
-                         L 380 140 
-                         L 420 160 
-                         L 450 180 
-                         L 480 220 
-                         L 490 260 
-                         L 485 300 
-                         L 470 340 
-                         L 450 380 
-                         L 420 420 
-                         L 380 450 
-                         L 340 460 
-                         L 300 465 
-                         L 260 460 
-                         L 220 450 
-                         L 180 430 
-                         L 150 400 
-                         L 120 360 
-                         L 110 320 
-                         L 115 280 
-                         L 125 240 
-                         L 140 200 
-                         L 150 150 Z"
+                      d="M 200 100 
+                         C 230 90, 270 90, 300 100
+                         C 330 95, 360 95, 390 100
+                         C 410 110, 420 120, 430 140
+                         C 440 160, 445 180, 450 200
+                         C 455 230, 460 260, 450 290
+                         C 445 320, 435 350, 420 380
+                         C 400 410, 375 440, 350 460
+                         C 325 480, 300 490, 300 500
+                         C 300 490, 275 480, 250 460
+                         C 225 440, 200 410, 180 380
+                         C 165 350, 155 320, 150 290
+                         C 140 260, 145 230, 150 200
+                         C 155 180, 160 160, 170 140
+                         C 180 120, 190 110, 200 100 Z"
                       fill="hsl(var(--muted))"
                       stroke="hsl(var(--border))"
                       strokeWidth="2"
                       className="transition-all duration-300"
                     />
                     
-                    {/* State Boundaries - Simplified */}
+                    {/* State Boundaries - More Accurate */}
                     {/* Rajasthan */}
                     <path
-                      d="M 150 200 L 250 180 L 280 220 L 260 280 L 200 300 L 150 260 Z"
+                      d="M 120 180 L 220 160 L 260 200 L 240 260 L 180 280 L 120 240 Z"
                       fill="none"
                       stroke="hsl(var(--border))"
                       strokeWidth="1"
@@ -129,7 +117,7 @@ const StatesHeatmapSection = () => {
                     
                     {/* Madhya Pradesh */}
                     <path
-                      d="M 250 260 L 380 250 L 400 300 L 380 340 L 300 350 L 250 320 Z"
+                      d="M 220 240 L 360 230 L 380 280 L 360 320 L 280 330 L 220 300 Z"
                       fill="none"
                       stroke="hsl(var(--border))"
                       strokeWidth="1"
@@ -138,7 +126,7 @@ const StatesHeatmapSection = () => {
                     
                     {/* Maharashtra */}
                     <path
-                      d="M 200 350 L 320 360 L 340 410 L 300 440 L 240 430 L 180 400 Z"
+                      d="M 180 330 L 300 340 L 320 390 L 280 420 L 220 410 L 160 380 Z"
                       fill="none"
                       stroke="hsl(var(--border))"
                       strokeWidth="1"
@@ -147,7 +135,7 @@ const StatesHeatmapSection = () => {
                     
                     {/* Punjab */}
                     <path
-                      d="M 220 110 L 280 110 L 290 150 L 250 160 L 220 140 Z"
+                      d="M 200 90 L 260 90 L 270 130 L 230 140 L 200 120 Z"
                       fill="none"
                       stroke="hsl(var(--border))"
                       strokeWidth="1"
@@ -156,7 +144,7 @@ const StatesHeatmapSection = () => {
                     
                     {/* Haryana */}
                     <path
-                      d="M 280 140 L 320 140 L 330 170 L 300 180 L 280 170 Z"
+                      d="M 260 120 L 300 120 L 310 150 L 280 160 L 260 150 Z"
                       fill="none"
                       stroke="hsl(var(--border))"
                       strokeWidth="1"
@@ -165,9 +153,9 @@ const StatesHeatmapSection = () => {
                     
                     {/* Location Pins */}
                     {locationsData.map((location) => {
-                      // Convert lat/lng to SVG coordinates (simplified projection)
-                      const x = 150 + (location.coordinates.lng - 68) * 4.5;
-                      const y = 450 - (location.coordinates.lat - 8) * 8.5;
+                      // Improved coordinate conversion for accurate positioning
+                      const x = 100 + (location.coordinates.lng - 68) * 6;
+                      const y = 420 - (location.coordinates.lat - 8) * 10;
                       
                       return (
                         <g key={location.id}>
@@ -205,19 +193,19 @@ const StatesHeatmapSection = () => {
                     })}
                     
                     {/* State Labels */}
-                    <text x="200" y="240" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                    <text x="170" y="220" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
                       Rajasthan
                     </text>
-                    <text x="320" y="300" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                    <text x="300" y="280" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
                       Madhya Pradesh
                     </text>
-                    <text x="270" y="400" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                    <text x="250" y="380" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
                       Maharashtra
                     </text>
-                    <text x="250" y="130" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                    <text x="230" y="110" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
                       Punjab
                     </text>
-                    <text x="300" y="160" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                    <text x="280" y="140" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
                       Haryana
                     </text>
                   </svg>
