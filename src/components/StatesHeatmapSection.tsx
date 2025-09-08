@@ -82,132 +82,132 @@ const StatesHeatmapSection = () => {
                     className="w-full h-auto max-w-2xl mx-auto"
                     style={{ filter: 'drop-shadow(0 4px 20px rgba(0,102,255,0.1))' }}
                   >
-                    {/* Accurate India Map Outline - Distinctive Triangular Shape */}
+                    {/* Accurate India Map Outline */}
                     <path
-                      d="M 200 100 
-                         C 230 90, 270 90, 300 100
-                         C 330 95, 360 95, 390 100
-                         C 410 110, 420 120, 430 140
-                         C 440 160, 445 180, 450 200
-                         C 455 230, 460 260, 450 290
-                         C 445 320, 435 350, 420 380
-                         C 400 410, 375 440, 350 460
-                         C 325 480, 300 490, 300 500
-                         C 300 490, 275 480, 250 460
-                         C 225 440, 200 410, 180 380
-                         C 165 350, 155 320, 150 290
-                         C 140 260, 145 230, 150 200
-                         C 155 180, 160 160, 170 140
-                         C 180 120, 190 110, 200 100 Z"
+                      d="M 180 60 
+                         L 220 50 L 270 55 L 320 65 L 370 80 L 420 100
+                         L 450 130 L 470 160 L 480 190 L 485 220
+                         L 480 250 L 470 280 L 450 310 L 420 340
+                         L 380 370 L 330 395 L 270 415 L 200 425
+                         L 130 420 L 70 405 L 20 385 L -20 360
+                         L -50 330 L -70 295 L -80 260 L -85 225
+                         L -80 190 L -70 155 L -50 125 L -20 100
+                         L 20 80 L 70 65 L 130 55 L 180 60 Z"
                       fill="hsl(var(--muted))"
                       stroke="hsl(var(--border))"
                       strokeWidth="2"
                       className="transition-all duration-300"
+                      transform="translate(300, 50)"
                     />
                     
-                    {/* State Boundaries - More Accurate */}
-                    {/* Rajasthan */}
-                    <path
-                      d="M 120 180 L 220 160 L 260 200 L 240 260 L 180 280 L 120 240 Z"
-                      fill="none"
-                      stroke="hsl(var(--border))"
-                      strokeWidth="1"
-                      strokeDasharray="2,2"
-                    />
-                    
-                    {/* Madhya Pradesh */}
-                    <path
-                      d="M 220 240 L 360 230 L 380 280 L 360 320 L 280 330 L 220 300 Z"
-                      fill="none"
-                      stroke="hsl(var(--border))"
-                      strokeWidth="1"
-                      strokeDasharray="2,2"
-                    />
-                    
-                    {/* Maharashtra */}
-                    <path
-                      d="M 180 330 L 300 340 L 320 390 L 280 420 L 220 410 L 160 380 Z"
-                      fill="none"
-                      stroke="hsl(var(--border))"
-                      strokeWidth="1"
-                      strokeDasharray="2,2"
-                    />
-                    
-                    {/* Punjab */}
-                    <path
-                      d="M 200 90 L 260 90 L 270 130 L 230 140 L 200 120 Z"
-                      fill="none"
-                      stroke="hsl(var(--border))"
-                      strokeWidth="1"
-                      strokeDasharray="2,2"
-                    />
-                    
-                    {/* Haryana */}
-                    <path
-                      d="M 260 120 L 300 120 L 310 150 L 280 160 L 260 150 Z"
-                      fill="none"
-                      stroke="hsl(var(--border))"
-                      strokeWidth="1"
-                      strokeDasharray="2,2"
-                    />
-                    
-                    {/* Location Pins */}
-                    {locationsData.map((location) => {
-                      // Improved coordinate conversion for accurate positioning
-                      const x = 100 + (location.coordinates.lng - 68) * 6;
-                      const y = 420 - (location.coordinates.lat - 8) * 10;
-                      
-                      return (
-                        <g key={location.id}>
-                          {/* Pin Shadow */}
-                          <circle
-                            cx={x + 2}
-                            cy={y + 2}
-                            r="8"
-                            fill="rgba(0,0,0,0.2)"
-                            className="pointer-events-none"
-                          />
-                          {/* Pin */}
-                          <circle
-                            cx={x}
-                            cy={y}
-                            r="8"
-                            fill={location.pinColor}
-                            stroke="#ffffff"
-                            strokeWidth="3"
-                            className="cursor-pointer transition-all duration-300 hover:r-10 hover:stroke-4"
-                            onClick={() => handleLocationClick(location)}
-                            onMouseEnter={() => handleLocationHover(location)}
-                            onMouseLeave={() => handleLocationHover(null)}
-                          />
-                          {/* Pin Center */}
-                          <circle
-                            cx={x}
-                            cy={y}
-                            r="3"
-                            fill="#ffffff"
-                            className="pointer-events-none"
-                          />
-                        </g>
-                      );
-                    })}
-                    
-                    {/* State Labels */}
-                    <text x="170" y="220" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
-                      Rajasthan
-                    </text>
-                    <text x="300" y="280" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
-                      Madhya Pradesh
-                    </text>
-                    <text x="250" y="380" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
-                      Maharashtra
-                    </text>
-                    <text x="230" y="110" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
-                      Punjab
-                    </text>
-                    <text x="280" y="140" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
-                      Haryana
-                    </text>
+                     {/* State Boundaries - Accurate positioning */}
+                     {/* Rajasthan */}
+                     <path
+                       d="M 180 180 L 280 160 L 320 200 L 300 260 L 240 280 L 180 240 Z"
+                       fill="none"
+                       stroke="hsl(var(--border))"
+                       strokeWidth="1"
+                       strokeDasharray="2,2"
+                       transform="translate(300, 50)"
+                     />
+                     
+                     {/* Madhya Pradesh */}
+                     <path
+                       d="M 280 240 L 420 230 L 440 280 L 420 320 L 340 330 L 280 300 Z"
+                       fill="none"
+                       stroke="hsl(var(--border))"
+                       strokeWidth="1"
+                       strokeDasharray="2,2"
+                       transform="translate(300, 50)"
+                     />
+                     
+                     {/* Maharashtra */}
+                     <path
+                       d="M 240 330 L 360 340 L 380 390 L 340 420 L 280 410 L 220 380 Z"
+                       fill="none"
+                       stroke="hsl(var(--border))"
+                       strokeWidth="1"
+                       strokeDasharray="2,2"
+                       transform="translate(300, 50)"
+                     />
+                     
+                     {/* Punjab */}
+                     <path
+                       d="M 260 90 L 320 90 L 330 130 L 290 140 L 260 120 Z"
+                       fill="none"
+                       stroke="hsl(var(--border))"
+                       strokeWidth="1"
+                       strokeDasharray="2,2"
+                       transform="translate(300, 50)"
+                     />
+                     
+                     {/* Haryana */}
+                     <path
+                       d="M 320 120 L 360 120 L 370 150 L 340 160 L 320 150 Z"
+                       fill="none"
+                       stroke="hsl(var(--border))"
+                       strokeWidth="1"
+                       strokeDasharray="2,2"
+                       transform="translate(300, 50)"
+                     />
+                     
+                     {/* Location Pins */}
+                     {locationsData.map((location) => {
+                       // Accurate coordinate conversion for the new India map
+                       const x = 300 + (location.coordinates.lng - 75) * 8;
+                       const y = 400 - (location.coordinates.lat - 15) * 12;
+                       
+                       return (
+                         <g key={location.id}>
+                           {/* Pin Shadow */}
+                           <circle
+                             cx={x + 2}
+                             cy={y + 2}
+                             r="8"
+                             fill="rgba(0,0,0,0.2)"
+                             className="pointer-events-none"
+                           />
+                           {/* Pin */}
+                           <circle
+                             cx={x}
+                             cy={y}
+                             r="8"
+                             fill={location.pinColor}
+                             stroke="#ffffff"
+                             strokeWidth="3"
+                             className="cursor-pointer transition-all duration-300 hover:r-10 hover:stroke-4"
+                             onClick={() => handleLocationClick(location)}
+                             onMouseEnter={() => handleLocationHover(location)}
+                             onMouseLeave={() => handleLocationHover(null)}
+                           />
+                           {/* Pin Center */}
+                           <circle
+                             cx={x}
+                             cy={y}
+                             r="3"
+                             fill="#ffffff"
+                             className="pointer-events-none"
+                           />
+                         </g>
+                       );
+                     })}
+                     
+                     {/* State Labels */}
+                     <text x="530" y="280" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                       Rajasthan
+                     </text>
+                     <text x="630" y="340" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                       Madhya Pradesh
+                     </text>
+                     <text x="580" y="430" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                       Maharashtra
+                     </text>
+                     <text x="590" y="160" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                       Punjab
+                     </text>
+                     <text x="640" y="190" textAnchor="middle" className="fill-muted-foreground text-xs font-medium pointer-events-none">
+                       Haryana
+                     </text>
                   </svg>
                   
                   {/* Hover Tooltip */}
